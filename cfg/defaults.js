@@ -27,6 +27,10 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!postcss-loader!less-loader'
       },
       {
+        test:/\.json/,
+        loader:'json-loader'
+      },
+      {
         test: /\.styl/,
         loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
       },
@@ -47,6 +51,10 @@ module.exports = {
   port: dfltPort,
   getDefaultModules: getDefaultModules,
   postcss: function () {
-    return [];
+    return [
+      require('autoprefixer')({
+        browsers:['last 2 versions','ie >=8']
+      })
+    ];
   }
 };
